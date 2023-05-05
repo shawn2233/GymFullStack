@@ -1,0 +1,43 @@
+body{
+  padding-top:80px;
+  word-wrap:break-word;
+  background-color: lightgray;
+  
+}
+img{
+  height: 200px;
+}
+.hidden{
+  display: none;
+}
+#space{
+  display: block;
+  margin-top: 10%;
+}
+.stopwatch{
+  margin-bottom: 3%;
+}
+li{
+  list-style: none;
+  margin-bottom: 2%;
+
+}
+h3{
+  margin-bottom: 4%;
+}
+span{
+  margin: 0% 1%;
+}
+.well{
+  background-color: darkgray;
+  color: black;
+}
+.btn-warning{
+  background-color: black;
+  border-color: black;
+}
+.btn-default{
+  color: black;
+  background-color: #fff;
+  border-color: black;
+}

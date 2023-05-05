@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+<head>
+    <title>Shawns Gym</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/9758b9c0d3.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+
+    <div class="page-header text-center">
+        <h1><span class="fa-solid fa-dumbbell"></span> Workout Page</h1>
+        <a href="/logout" class="btn btn-default btn-sm">Leave</a>
+    </div>
+
+    <div class="row">
+
+        <!-- LOCAL INFORMATION -->
+        <div class="col-sm-6">
+            <div class="well">
+              <!-- <i class="fa-solid fa-stopwatch-20 fa-2xl"></i> -->
+                <h3><span class="fa-solid fa-stopwatch-20 fa-2xl"></span> Timer:</h3>
+                <div class="stopwatch">
+                  <h1 id="display">00:00:00</h1>
+                  <button id="startButton">Start</button>
+                  <button id="stopButton">Stop</button>
+                  <button id="resetButton">Reset</button>
+                </div>
+
+                <% if (user.local.email) { %>
+                    <p>
+                        <strong>Welcome</strong>: <span id="name"><%= user.local.email %></span><br>
+                        Enjoy your workout
+                    </p>
+                  
+
+                <% } else { %>
+                    <a href="/connect/local" class="btn btn-default">Connect Local</a>
+                <% } %>
+
+                <div id="space">
+                  <h3><span class="fa-solid fa-handshake-angle"></span> Personal trainer</h3>
+                  <p>Need a workout routine?</p>
+                  <button class="inputBtn">Ask me</button>
+                  <h5 id="results"></h5>
+                  <h5 id="results2"></h5>
+                  <h5 id="results3"></h5>
+                  <h5 id="results4"></h5>
+                  <h5 id="results5"></h5>
+                  <h5 id="results6"></h5>
+                  <h5 id="results7"></h5>
+                  <h5 id="results8"></h5>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-sm-6">
+          <h3>Workout plan</h3>
+          <ul class="workouts">
+          <% for(var i=0; i<workouts.length; i++) {%>
+            <% let color = workouts[i].favorited ? "red" : "black" %>
+            <% if(!workouts[i].check){%>
+            <li class="workout">
+              <span style="color:<%=color%>"><%= workouts[i].wk %></span>
+              Set:<span><%= workouts[i].set %></span>
+              Reps:<span><%= workouts[i].rep %></span>
+              <span><%= workouts[i].check %></span>
+              <span><i class="fa-solid fa-square-check" aria-hidden="true"></i></span>
+              <span><i class="fa-solid fa-delete-left" aria-hidden="true"></i></span>
+            </li>
+            <% } %> 
+          <% } %>
+          </ul>
+
+          <h2>Log your workout here</h2>
+        <% if (user.local.email) { %>
+          <form action="/workout" method="POST">
+            <input type="text" class="hidden" name="name" value="<%= user.local.email %>">
+            <input type="text" placeholder="workout" name="wk">
+            <input type="text" placeholder="sets" name="set">
+            <input type="text" placeholder="reps" name="rep">
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+        <% } %>
+        <div></div>
+        <div class="col-sm-6">
+          <h3>Completed workouts</h3>
+          <ul class="workouts">
+            <% for(var i=0; i<workouts.length; i++) {%>
+              <% let color = workouts[i].favorited ? "red" : "black" %>
+              <% if(workouts[i].check==="completed"){%>
+              <li class="workout">
+                <span style="color:<%=color%>"><%= workouts[i].wk %></span>
+                Set:<span><%= workouts[i].set %></span>
+                Reps:<span><%= workouts[i].rep %></span>
+                <span style="color:<%=color%>"><%= workouts[i].check %></span>
+                <span><i class="fa-solid fa-square-check" aria-hidden="true"></i></span>
+                <span><i class="fa-solid fa-delete-left" aria-hidden="true"></i></span>
+              </li>
+              <% } %> 
+            <% } %>
+            </ul>
+
+</div>
+
+
+
+<script src="main.js"></script>
+
+</body>
+</html>
